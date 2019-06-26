@@ -163,7 +163,7 @@ PRODUCT_PACKAGES += \\
     libperipheral_client \\
     Additional \\
     qcrilmsgtunnel \\
-    shutdownlistener
+    shutdownlistener \\
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
