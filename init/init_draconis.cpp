@@ -28,23 +28,30 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 
-#include "vendor_init.h"
+#include <android-base/file.h>
+#include <android-base/logging.h>
+#include <android-base/properties.h>
+#include <android-base/strings.h>
+
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
+#include "vendor_init.h"
+
+
+
+#include <sys/_system_properties.h>
+using android::init::property_set;
 
 void gsm_properties();
 void cdma_properties(const char *cdma_sub);
 
 void vendor_load_properties()
 {
-    std::string platform = property_get("ro.board.platform");
+    std::string platform = android::base::GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string radio = property_get("ro.boot.radio");
+    std::string radio = android::base::GetProperty("ro.boot.radio", "");
 
     if (radio == "0x1") {
        
@@ -71,8 +78,8 @@ void vendor_load_properties()
  
     }
 
-    std::string device = property_get("ro.product.device");
-    INFO("Found radio id %s setting build properties for %s device\n", radio.c_str(), device.c_str());
+    std::string device = android::base::GetProperty("ro.boot.device", "");
+    
 }
 
 void gsm_properties()
