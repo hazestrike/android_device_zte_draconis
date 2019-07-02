@@ -77,8 +77,7 @@ BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x2000000 --tags_offset 0x1e00000
-KERNEL_TOOLCHAIN := $(.ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
-KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
 TARGET_KERNEL_SOURCE := kernel/zte/draconis
 TARGET_KERNEL_CONFIG := draconis_defconfig
 
@@ -166,6 +165,10 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 40
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+# Vendor init
+TARGET_INIT_VENDOR_LIB := libinit_draconis
+TARGET_RECOVERY_DEVICE_MODLES := libinit_draconis
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
